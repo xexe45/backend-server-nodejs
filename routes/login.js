@@ -17,7 +17,7 @@ const GOOGLE_SECRET = require('../config/config').GOOGLE_SECRET;
 
 app.post('/google/', (req, res) => {
 
-    var token = req.body.token || 'xxx';
+    var token = req.body.token || 'XXX';
 
     var client = new GoogleAuth.OAuth2Client(GOOGLE_CLIENT_ID, GOOGLE_SECRET, "");
 
@@ -35,7 +35,7 @@ app.post('/google/', (req, res) => {
             var userid = payload["sub"];
             // If request specified a G Suite domain:
             //var domain = payload['hd'];
-            Usuario.findOne({ emaio: payload.email }, (err, usuarioDB) => {
+            Usuario.findOne({ email: payload.email }, (err, usuarioDB) => {
 
                 if (err) {
                     return res

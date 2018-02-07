@@ -41,7 +41,8 @@ app.get('/coleccion/:tabla/:busqueda', (req, res) => {
             .status(200)
             .json({
                 ok: true,
-                [tabla]: data
+                [tabla]: data,
+                conteo: data.length
             });
     })
 });

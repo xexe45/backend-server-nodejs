@@ -16,7 +16,7 @@ app.get("/", (req, res, next) => {
     var desde = req.query.desde || 0;
     desde = Number(desde);
 
-    Usuario.find({}, 'nombre email img role')
+    Usuario.find({}, 'nombre email img role google')
         .skip(desde)
         .limit(5)
         .exec(
@@ -105,7 +105,7 @@ app.put("/:id", mdAutenticacion.verificaToken, (req, res) => {
 //Bcrypt js para las contraseñas
 //=================================
 
-app.post("/", mdAutenticacion.verificaToken, (req, res) => {
+app.post("/", (req, res) => {
     //Librería Body Parser.
     var body = req.body;
 
@@ -127,7 +127,7 @@ app.post("/", mdAutenticacion.verificaToken, (req, res) => {
                     errors: error
                 });
         }
-        res.status(201).json({ ok: true, usuarios: usuarioGuardado, usuarioToken: req.usuario });
+        res.status(201).json({ ok: true, usuarios: usuarioGuardado });
     });
 });
 
